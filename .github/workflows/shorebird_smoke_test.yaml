@@ -1,0 +1,47 @@
+name: Shorebird Smoke Test
+
+# Run this once, by hand, to confirm SHOREBIRD_TOKEN is wired up.
+# It builds nothing and needs no signing secrets.
+on:
+  workflow_dispatch:
+
+env:
+  SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+
+jobs:
+  verify:
+    name: Verify Shorebird auth
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Shorebird
+        uses: shorebirdtech/setup-shorebird@v1
+        with:
+          cache: true
+
+      # Proves the CLI is on PATH. Does not test the token.
+      - name: Shorebird version
+        run: shorebird --version
+
+      # Fails loudly if the secret is missing or misnamed, before we spend
+      # a minute on an authenticated call.
+      - name: Check token is present
+        run: |
+          set -euo pipefail
+          if [ -z "${SHOREBIRD_TOKEN:-}" ]; then
+            echo "::error::SHOREBIRD_TOKEN is empty. Check the secret name in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+          echo "SHOREBIRD_TOKEN is set (${#SHOREBIRD_TOKEN} characters)."
+
+      # Authenticated call. If this returns your app list, CI is connected.
+      # If your CLI version names this differently, run `shorebird --help`
+      # and substitute any read-only authenticated command.
+      - name: List Shorebird apps
+        run: shorebird apps list

@@ -1,0 +1,125 @@
+# =============================================================
+#  Driver-Mobile-App — Flutter
+#  Regla general: si el SDK, Gradle, CocoaPods o el IDE lo
+#  regenera, no va al repositorio. Los secretos, nunca.
+# =============================================================
+
+# -------------------------------------------------------------
+# Flutter / Dart
+# -------------------------------------------------------------
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+pubspec_overrides.yaml
+devtools_options.yaml
+doc/api/
+
+# Cobertura y salidas de analisis
+coverage/
+lcov.info
+analysis_output.txt
+*.log
+
+# -------------------------------------------------------------
+# Android
+# -------------------------------------------------------------
+**/android/.gradle/
+**/android/.kotlin/
+**/android/captures/
+**/android/local.properties
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+**/android/**/GeneratedPluginRegistrant.java
+.cxx/
+*.hprof
+
+# Firma de la app — NUNCA en el repositorio
+**/android/key.properties
+**/android/keys/
+*.jks
+*.keystore
+
+# -------------------------------------------------------------
+# iOS / macOS
+# -------------------------------------------------------------
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/flutter_assets/
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/ServiceDefinitions.json
+**/ios/build/
+**/DerivedData/
+**/xcuserdata/
+*.xcuserstate
+
+# Firma y distribucion iOS — NUNCA en el repositorio
+*.ipa
+*.dSYM.zip
+*.mobileprovision
+*.p8
+*.p12
+*.cer
+*.certSigningRequest
+
+# -------------------------------------------------------------
+# Secretos y configuracion local
+# -------------------------------------------------------------
+.env
+.env.*
+*.pem
+secrets.json
+service-account*.json
+!.env.example
+!*.example
+
+# Firebase: generado por `flutterfire configure`, cada quien usa su proyecto
+**/android/app/google-services.json
+**/ios/Runner/GoogleService-Info.plist
+firebase.json
+
+# Salidas de build de Android
+**/android/build/
+
+# -------------------------------------------------------------
+# Fastlane (salidas generadas)
+# -------------------------------------------------------------
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots/
+**/fastlane/test_output/
+**/.bundle/
+vendor/bundle/
+
+# -------------------------------------------------------------
+# Editores e IDEs
+# -------------------------------------------------------------
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.history/
+*.swp
+*~
+
+# -------------------------------------------------------------
+# Sistema operativo
+# -------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+desktop.ini

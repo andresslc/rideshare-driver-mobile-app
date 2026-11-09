@@ -1,0 +1,24 @@
+default_platform(:android)
+
+platform :android do
+  desc "Deploy to Firebase"
+  lane :deploy do
+    firebase_app_distribution(
+      groups: "dev",
+      release_notes: "Staging build",
+      apk_path: "../build/app/outputs/flutter-apk/app-staging-release.apk",
+      firebase_cli_token: ENV["FIREBASE_TOKEN"],
+      app: ENV["FIREBASE_ANDROID_APP_ID"],
+    )
+  end
+
+  lane :prod do
+    firebase_app_distribution(
+      groups: "testers",
+      release_notes: "Production build",
+      apk_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
+      firebase_cli_token: ENV["FIREBASE_TOKEN"],
+      app: ENV["FIREBASE_ANDROID_APP_ID"],
+    )
+  end
+end
